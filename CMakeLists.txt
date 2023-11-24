@@ -19,7 +19,7 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE)
 endif()
 
-set(VTR_IPO_BUILD "auto" CACHE STRING "Should VTR be compiled with interprocedural compiler optimizations?")
+set(VTR_IPO_BUILD "off" CACHE STRING "Should VTR be compiled with interprocedural compiler optimizations?")
 set_property(CACHE VTR_IPO_BUILD PROPERTY STRINGS auto on off)
 
 #Allow the user to configure how much assertion checking should occur

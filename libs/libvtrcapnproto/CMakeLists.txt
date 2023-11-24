@@ -25,6 +25,7 @@ set(CAPNP_DEFS
     gen/rr_graph_uxsdcxx.capnp
     map_lookahead.capnp
     extended_map_lookahead.capnp
+    delay_graph.capnp
 )
 
 capnp_generate_cpp(CAPNP_SRCS CAPNP_HDRS

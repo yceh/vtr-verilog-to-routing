@@ -42,6 +42,7 @@ file(GLOB_RECURSE EXEC_SOURCES src/main.cpp)
 file(GLOB_RECURSE LIB_SOURCES src/*/*.cpp)
 file(GLOB_RECURSE LIB_HEADERS src/*/*.h)
 files_to_dirs(LIB_HEADERS LIB_INCLUDE_DIRS)
+set_source_files_properties(src/timing/dump_timing_graph.cpp PROPERTIES COMPILE_FLAGS -Og)
 
 if(${VTR_ENABLE_CAPNPROTO})
     add_definitions("-DVTR_ENABLE_CAPNPROTO")
@@ -134,8 +135,9 @@ if(${VTR_ENABLE_CAPNPROTO})
 endif()
 
 add_executable(vpr ${EXEC_SOURCES})
-
+add_executable(dump_delay_graph src/dump_delay_graph_main.cpp)
 target_link_libraries(vpr libvpr)
+target_link_libraries(dump_delay_graph libvpr)
 
 
 #Supress IPO link warnings if IPO is enabled

@@ -25,7 +25,7 @@ class PostClusterDelayCalculator : public tatum::DelayCalculator {
 
     tatum::Time max_edge_delay(const tatum::TimingGraph& tg, tatum::EdgeId edge_id) const override;
     tatum::Time setup_time(const tatum::TimingGraph& tg, tatum::EdgeId edge_id) const override;
-
+    tatum::Time atom_net_delay(AtomPinId atom_src_pin,AtomPinId atom_sink_pin, DelayType delay_type);
     tatum::Time min_edge_delay(const tatum::TimingGraph& tg, tatum::EdgeId edge_id) const override;
     tatum::Time hold_time(const tatum::TimingGraph& tg, tatum::EdgeId edge_id) const override;
 
@@ -33,6 +33,7 @@ class PostClusterDelayCalculator : public tatum::DelayCalculator {
 
     void set_tsu_margin_relative(float val);
     void set_tsu_margin_absolute(float val);
+    AtomDelayCalc atom_delay_calc_;
 
   private:
     friend VprTimingGraphResolver;
@@ -73,7 +74,6 @@ class PostClusterDelayCalculator : public tatum::DelayCalculator {
     const NetPinsMatrix<float>& net_delay_;
 
     ClbDelayCalc clb_delay_calc_;
-    AtomDelayCalc atom_delay_calc_;
 
     float tsu_margin_rel_ = 1.0;
     float tsu_margin_abs_ = 0.0e-12;

@@ -1376,7 +1376,7 @@ bool vpr_analysis_flow(const Netlist<>& net_list,
 
     return true;
 }
-
+void dump_timing_graph(std::shared_ptr<AnalysisDelayCalculator> delay_calc,const  AtomNetlist& nl) ;
 void vpr_analysis(const Netlist<>& net_list,
                   t_vpr_setup& vpr_setup,
                   const t_arch& Arch,
@@ -1411,6 +1411,7 @@ void vpr_analysis(const Netlist<>& net_list,
         auto analysis_delay_calc = std::make_shared<AnalysisDelayCalculator>(atom_ctx.nlist, atom_ctx.lookup, net_delay, vpr_setup.RouterOpts.flat_routing);
         auto timing_info = make_setup_hold_timing_info(analysis_delay_calc, vpr_setup.AnalysisOpts.timing_update_type);
         timing_info->update();
+        dump_timing_graph(analysis_delay_calc, atom_ctx.nlist);
 
         if (isEchoFileEnabled(E_ECHO_ANALYSIS_TIMING_GRAPH)) {
             auto& timing_ctx = g_vpr_ctx.timing();
